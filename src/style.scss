@@ -1,0 +1,155 @@
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+.all-cryptos-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+  padding-top: 50px;
+}
+
+.controls-btn {
+  padding: 7px;
+  border: none;
+  background-color: #405870;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+  width: 240px;
+}
+
+.controls-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+button:hover {
+  background-color: #2c3e50;
+}
+.crypto-content-wrapper {
+  display: flex;
+  align-items: center;
+  padding-top: 50px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.crypto-price-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 12px;
+  border: 1px solid #e9ecef;
+  margin: 15px 0;
+}
+
+.crypto-selector {
+  margin-bottom: 10px;
+}
+
+.crypto-spinner {
+  margin: 0 auto;
+}
+
+.crypto-selector label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.crypto-selector select {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #e9ecef;
+  border-radius: 6px;
+  font-size: 16px;
+  background: white;
+  cursor: pointer;
+}
+
+.crypto-selector select.refresh-select:focus {
+  outline: none;
+  border-color: #007cba;
+  outline: none;
+  border-color: #007cba;
+}
+
+.crypto-content {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.crypto-icon img {
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.crypto-info {
+  flex: 1;
+}
+
+.crypto-name {
+  margin: 0 0 8px 0;
+  color: #2c3e50;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.crypto-price {
+  margin: 0 0 5px 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: #2c3e50;
+}
+
+.crypto-change {
+  margin: 0 5px 8px 0;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 4px 8px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.change-positive {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.change-negative {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.change-neutral {
+  background-color: #e2e3e5;
+  color: #383d41;
+}
+
+.crypto-updated {
+  color: #6c757d;
+  font-size: 12px;
+}
+
+.crypto-loading {
+  text-align: center;
+  padding: 20px;
+  color: #6c757d;
+}
+
+.crypto-error {
+  color: #dc3545;
+  background: #f8d7da;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #f5c6cb;
+}
