@@ -1,8 +1,10 @@
 import "./editor.scss";
 
 import { useCryptoTracker } from "./hooks/useCryptoTracker.js";
-import spinner from "./assets/spinner.svg";
-import React, { Fragment } from "react";
+
+import { CryptoSelect } from "./components/CryptoSelect.jsx";
+import { CryptoButtonControls } from "./components/CryptoButtonControls.jsx";
+import { CryptoContent } from "./components/CryptoContent.jsx";
 
 export default function Edit(props) {
   const {
@@ -24,73 +26,13 @@ export default function Edit(props) {
 
   if (error) return <div>Error: {error}</div>;
 
-  const renderContentByCondition = () => {
-    if (isLoading) {
-      return <img className="crypto-spinner" src={spinner} alt="spinner" />;
-    }
-
-    if (isAllReportVisible && allReportData?.data?.length) {
-      return allReportData?.data?.map((cryptoItem) => (
-        <Fragment key={cryptoItem?.id}>
-          <div className="crypto-info">
-            <div className="crypto-icon">
-              <img
-                src={cryptoItem?.icon}
-                alt={cryptoItem?.fullName}
-                width="32"
-                height="32"
-              />
-            </div>
-            <h3 className="crypto-name">{cryptoItem?.fullName}</h3>
-            <p className="crypto-price">${cryptoItem?.price}</p>
-            <p className="crypto-change change-positive">
-              {cryptoItem?.priceChange}
-            </p>
-            <small className="crypto-updated">
-              {new Date(cryptoItem?.lastUpdated).toLocaleString()}
-            </small>
-          </div>
-        </Fragment>
-      ));
-    }
-
-    return (
-      <>
-        <div className="crypto-info">
-          <div className="crypto-icon">
-            <img
-              src={data?.data?.icon}
-              alt={data?.data?.fullName}
-              width="32"
-              height="32"
-            />
-          </div>
-          <h3 className="crypto-name">{data?.data?.fullName}</h3>
-          <p className="crypto-price">{formattedPrice}</p>
-          <p className="crypto-change change-positive">{formattedChange}</p>
-          <small className="crypto-updated">{formattedTime}</small>
-        </div>
-      </>
-    );
-  };
-
   return (
     <>
       <div
         className="crypto-price-container"
         data-wp-interactive="crypto-app-store"
       >
-        <div className="crypto-selector">
-          <label for="crypto-select">Выберите криптовалюту:</label>
-          <select
-            onChange={(e) => setSelectedCoin(e.target.value)}
-            id="crypto-select"
-          >
-            <option value="bitcoin">Bitcoin (BTC)</option>
-            <option value="ethereum">Ethereum (ETH)</option>
-            <option value="solana">Solana (SOL)</option>
-          </select>
-        </div>
+        <CryptoSelect onSelectCoin={setSelectedCoin} />
 
         <div
           style={{
@@ -104,29 +46,23 @@ export default function Edit(props) {
             style={{ display: isAllReportVisible ? "block" : "flex" }}
             className="crypto-content"
           >
-            {renderContentByCondition()}
+            <CryptoContent
+              isLoading={isLoading}
+              isAllReportVisible={isAllReportVisible}
+              allReportData={allReportData}
+              data={data}
+              formattedPrice={formattedPrice}
+              formattedChange={formattedChange}
+              formattedTime={formattedTime}
+            />
           </div>
 
-          {!isLoading && (
-            <div className="controls-wrapper">
-              <div className="refresh-btn-wrapper">
-                {!isAllReportVisible && (
-                  <button
-                    onClick={refetch}
-                    className="controls-btn refresh-btn"
-                  >
-                    Обновить данные
-                  </button>
-                )}
-              </div>
-
-              <div className="show-all-btn-wrapper">
-                <button onClick={toggleAllReport} className="controls-btn">
-                  {isAllReportVisible ? "Скрыть" : "Показать"} данные всех
-                </button>
-              </div>
-            </div>
-          )}
+          <CryptoButtonControls
+            isLoading={isLoading}
+            isAllReportVisible={isAllReportVisible}
+            refetch={refetch}
+            toggleAllReport={toggleAllReport}
+          />
         </div>
       </div>
     </>
