@@ -1,12 +1,18 @@
-import "./editor.scss";
-
-import { useCryptoTracker } from "./hooks/useCryptoTracker.js";
+import React from "react";
+import ReactDOM from "react-dom/client";
 
 import { CryptoSelect } from "./components/CryptoSelect.jsx";
-import { CryptoButtonControls } from "./components/CryptoButtonControls.jsx";
 import { CryptoContent } from "./components/CryptoContent.jsx";
+import { CryptoButtonControls } from "./components/CryptoButtonControls.jsx";
+import { useCryptoTracker } from "./hooks/useCryptoTracker.js";
 
-export default function Edit(props) {
+const divsToUpdate = document.querySelector(".crypto-price-container");
+
+  const root = ReactDOM.createRoot(divsToUpdate);
+  root.render(<CryptoApp />);
+  divsToUpdate.classList.remove("crypto-price-container");
+
+function CryptoApp(props) {
   const {
     formattedPrice,
     formattedChange,
@@ -32,7 +38,10 @@ export default function Edit(props) {
         className="crypto-price-container"
         data-wp-interactive="crypto-app-store"
       >
-        <CryptoSelect isAllReportVisible={isAllReportVisible} onSelectCoin={setSelectedCoin} />
+        <CryptoSelect
+          isAllReportVisible={isAllReportVisible}
+          onSelectCoin={setSelectedCoin}
+        />
 
         <div
           style={{
