@@ -90,17 +90,22 @@ export const useCryptoTracker = ({ coin, refreshInterval }) => {
       )}%`
     : "0%";
 
-  const changeClass = {
-    "change-positive": data?.data?.priceChange
-      ? data.data.priceChange > 0
-      : false,
-    "change-negative": data?.data?.priceChange
-      ? data.data.priceChange < 0
-      : false,
-    "change-neutral": data?.data?.priceChange
-      ? data.data.priceChange === 0
-      : false,
+  const getChangeClass = (priceChange) => {
+    if (priceChange === undefined) {
+      return "";
+    }
+
+    if (priceChange > 0) {
+      return "change-positive";
+    }
+
+    if (priceChange < 0) {
+      return "change-negative";
+    }
+
+    return "change-neutral";
   };
+
 
   const formattedTime = lastUpdated
     ? `Updated: ${lastUpdated.toLocaleTimeString()}`
@@ -153,7 +158,7 @@ export const useCryptoTracker = ({ coin, refreshInterval }) => {
     toggleAllReport,
     formattedPrice,
     formattedChange,
-    changeClass,
+    getChangeClass,
     formattedTime,
     selectedCoin,
     setSelectedCoin,

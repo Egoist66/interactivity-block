@@ -20,7 +20,7 @@ function CryptoApp(props) {
     setSelectedCoin,
     isLoading,
     error,
-    changeClass,
+    getChangeClass,
     refetch,
     data,
     toggleAllReport,
@@ -58,7 +58,7 @@ function CryptoApp(props) {
           >
             <CryptoContent
               isLoading={isLoading}
-              changeClass={changeClass}
+              getChangeClass={getChangeClass}
               isAllReportVisible={isAllReportVisible}
               allReportData={allReportData}
               data={data}
