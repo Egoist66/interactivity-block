@@ -15,6 +15,7 @@ export default function Edit(props) {
     isLoading,
     error,
     refetch,
+    changeClass,
     data,
     toggleAllReport,
     isAllReportVisible,
@@ -48,6 +49,7 @@ export default function Edit(props) {
           >
             <CryptoContent
               isLoading={isLoading}
+              changeClass={changeClass}
               isAllReportVisible={isAllReportVisible}
               allReportData={allReportData}
               data={data}

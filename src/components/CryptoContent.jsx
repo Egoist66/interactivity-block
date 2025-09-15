@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import spinner from "../assets/spinner.svg";
 
-export const CryptoContent = ({isLoading, isAllReportVisible, allReportData, data, formattedPrice, formattedChange, formattedTime}) => {
+export const CryptoContent = ({isLoading, isAllReportVisible, changeClass = 'change-positive', allReportData, data, formattedPrice, formattedChange, formattedTime}) => {
   if (isLoading) {
     return <img className="crypto-spinner" src={spinner} alt="spinner" />;
   }
@@ -20,7 +20,7 @@ export const CryptoContent = ({isLoading, isAllReportVisible, allReportData, dat
           </div>
           <h3 className="crypto-name">{cryptoItem?.fullName}</h3>
           <p className="crypto-price">${cryptoItem?.price}</p>
-          <p className="crypto-change change-positive">
+          <p className={`crypto-change ${changeClass}`}>
             {cryptoItem?.priceChange}
           </p>
           <small className="crypto-updated">
