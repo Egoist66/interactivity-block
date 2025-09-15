@@ -59,7 +59,7 @@ export const CryptoContent = ({
         <p className="crypto-price">{formattedPrice}</p>
         <p
           className={`crypto-change change-positive ${getChangeClass(
-            +cryptoItem?.priceChange
+            +data?.data?.priceChange
           )}`}
         >
           {formattedChange}
