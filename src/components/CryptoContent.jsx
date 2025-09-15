@@ -1,7 +1,16 @@
 import React, { Fragment } from "react";
 import spinner from "../assets/spinner.svg";
 
-export const CryptoContent = ({isLoading, isAllReportVisible, getChangeClass = () => {}, allReportData, data, formattedPrice, formattedChange, formattedTime}) => {
+export const CryptoContent = ({
+  isLoading,
+  isAllReportVisible,
+  getChangeClass = () => {},
+  allReportData,
+  data,
+  formattedPrice,
+  formattedChange,
+  formattedTime,
+}) => {
   if (isLoading) {
     return <img className="crypto-spinner" src={spinner} alt="spinner" />;
   }
@@ -20,7 +29,11 @@ export const CryptoContent = ({isLoading, isAllReportVisible, getChangeClass = (
           </div>
           <h3 className="crypto-name">{cryptoItem?.fullName}</h3>
           <p className="crypto-price">${cryptoItem?.price}</p>
-          <p className={`crypto-change ${getChangeClass(cryptoItem?.priceChange)}`}>
+          <p
+            className={`crypto-change ${getChangeClass(
+              +cryptoItem?.priceChange
+            )}`}
+          >
             {cryptoItem?.priceChange}
           </p>
           <small className="crypto-updated">
@@ -44,7 +57,13 @@ export const CryptoContent = ({isLoading, isAllReportVisible, getChangeClass = (
         </div>
         <h3 className="crypto-name">{data?.data?.fullName}</h3>
         <p className="crypto-price">{formattedPrice}</p>
-        <p className="crypto-change change-positive">{formattedChange}</p>
+        <p
+          className={`crypto-change change-positive ${getChangeClass(
+            +cryptoItem?.priceChange
+          )}`}
+        >
+          {formattedChange}
+        </p>
         <small className="crypto-updated">{formattedTime}</small>
       </div>
     </>
